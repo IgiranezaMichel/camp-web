@@ -1,8 +1,9 @@
-import { AppRegistration, Book, Dashboard, Home, Logout, People, Stairs } from "@mui/icons-material";
+import { AppRegistration, Book, Church, Dashboard, Home, Logout, People, Stairs } from "@mui/icons-material";
 import { NavigationItem } from "../types/navigationItem";
 
 export const Url:NavigationItem[]=[
     {icon:<Dashboard/>,title:'Home',url:'/admin'},
+    {icon:<Church/>,title:'Church',url:'/admin/church'},
     {icon:<Stairs/>,title:'Levels',url:'/admin/level'},
     {icon:<Book/>,title:'Books',url:'/admin/book'},
     {icon:<Home/>,title:'Camps',url:'/admin/camp'},
