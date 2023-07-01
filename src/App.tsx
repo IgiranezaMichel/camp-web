@@ -6,6 +6,7 @@ import { Exam } from './pages/user/exam'
 import { Dashboard } from './pages/user/index'
 import { User } from './pages/user/user'
 import { Logout } from './pages/logout'
+import { Church } from './pages/user/church'
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<BookUi/>} />
           <Route path="/admin" element={<Dashboard/>} />
+          <Route path="/admin/church" element={<Church/>} />
           <Route path="/admin/level" element={<LevelUi/>} />
           <Route path="/admin/book" element={<BookUi/>} />
           <Route path="/admin/camp" element={<Camp/>} />
