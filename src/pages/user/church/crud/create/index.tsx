@@ -22,7 +22,7 @@ export const AddChurch=(props:{children:ReactNode,id:string})=>{
                         <TabList onChange={handleChange}>
                             <Tab label="Field" value="1" />
                             <Tab label="District" value="2" />
-                            <Tab label="Church" value="2" />
+                            <Tab label="Church" value="3" />
                         </TabList>
                     </Box>
                     <TabPanel value="1"><Field/></TabPanel>
