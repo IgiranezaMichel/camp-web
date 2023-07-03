@@ -10,7 +10,6 @@ export const Field=()=>{
     const [church,setChurch]=useState<ChurchInput>({location:'',name:'',type:ChurchType.FIELD});
     const {saveChurch}=useSaveOrUpdateChurch(church);
     const saveChurchHandler=()=>{
-        alert('clicked')
         saveChurch().then(
             (data)=>{
             const result = data.data.saveOrUpdateChurch;
@@ -27,7 +26,7 @@ export const Field=()=>{
         <TextField variant="standard" value={church.name} onChange={(e)=>setChurch({...church,name:e.target.value})} label='Field name' fullWidth  className="mb-3"/>
         <TextField variant="standard" value={church.location} onChange={(e)=>setChurch({...church,location:e.target.value})} label='Field Location' fullWidth className="mb-3"/>
         <div className="modal-footer">
-            <button className="btn btn-outline-primary" onChange={()=>saveChurchHandler()}><Save/></button>
+            <button className="btn btn-outline-primary" onClick={()=>{saveChurchHandler()}}><Save/></button>
         </div>
         <ToastContainer/>
         </>
