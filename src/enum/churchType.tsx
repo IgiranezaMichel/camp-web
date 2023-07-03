@@ -1,5 +1,5 @@
 export enum ChurchType {
-    FIELD,
-    DISTRICT,
-    CHURCH
+    FIELD='FIELD',
+    DISTRICT='DISTRICT',
+    CHURCH='CHURCH'
     }
