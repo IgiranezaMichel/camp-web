@@ -1,6 +1,7 @@
 export type LevelInput={
+id?:string,
 name:string
 fromAge:number
 toAge:number
-photo:string
+base64Photo:string
 }
