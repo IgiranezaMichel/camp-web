@@ -19,6 +19,7 @@ export const BootstrapModal:FC<modalItem>=(props)=>{
             role="dialog"
             aria-labelledby="modalTitleId"
             aria-hidden="false"
+            
         >
             <Box
                 className={"modal-dialog modal-dialog-scrollable modal-dialog-centered "+props.size}
