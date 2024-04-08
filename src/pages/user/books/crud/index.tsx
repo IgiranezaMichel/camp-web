@@ -9,6 +9,7 @@ import { Close, VisibilityOutlined } from '@mui/icons-material';
 import { BookDetail } from './detail';
 import { useState } from 'react';
 import { DeleteBook } from './delete';
+import { ToastContainer } from 'react-toastify';
 
 export default function BookList() {
     const { content } = useBookContent();
@@ -71,6 +72,7 @@ export default function BookList() {
                 <div className='bg-body-secondary text-center p-5'>
                     -- No data found --
                 </div>}
+                <ToastContainer/>
         </>
 
     );
