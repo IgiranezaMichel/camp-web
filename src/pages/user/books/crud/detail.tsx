@@ -12,7 +12,6 @@ export const BookDetail=(props:{arrIndex:number})=>{
             const fetch=async()=>{
                 if(content!=undefined){
                     setBook(content.responseContent.content[props.arrIndex]);
-                    console.log(book)
                 }
             }
             fetch().then().catch(err=>console.log(err))
