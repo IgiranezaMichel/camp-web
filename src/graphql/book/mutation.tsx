@@ -7,6 +7,6 @@ mutation($bookInput:BookInput){
 `
 export const DELETE_BOOK=gql`
 mutation($id:ID){
-    saveOrUpdateBook(id:$id)
+    deleteBook(id:$id)
 }
 `
