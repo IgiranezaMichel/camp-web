@@ -1,6 +1,4 @@
 import { Button, FormControl, NativeSelect, Pagination, TextField } from "@mui/material"
-import { Admin } from "../../../component/admin"
-import { AddBox } from "@material-ui/icons"
 import { CreateBook } from "./crud/create"
 import { useBook } from "../../../controller/book/query"
 import { useState } from "react"
@@ -9,7 +7,9 @@ import { ContentData } from "../../../types/contentTypes"
 import { BookContext } from "../../../contexts/bookContent"
 import { ToastContainer } from "react-toastify"
 import BookList from "./crud"
-import { Sort } from "@mui/icons-material"
+import { AddBox, Sort } from "@mui/icons-material"
+import { SideBarNavigation } from "../../../component/navigation"
+import { Url } from "../../../url/url"
 
 export const BookUi = () => {
     const [page, setPage] = useState<PageInput>({ pageNumber: 0, pageSize: 10, sort: "id" });
@@ -22,7 +22,7 @@ export const BookUi = () => {
     }
     return (
         <BookContext.Provider value={data}>
-            <Admin>
+            <SideBarNavigation activeBar="/admin/book" items={Url}>
                 <div>
                     <Button data-bs-toggle="modal"
                         data-bs-target="#addBook" variant="contained"><AddBox /> Add New book</Button>
@@ -55,7 +55,7 @@ export const BookUi = () => {
                 </div>
                 <CreateBook />
                 <ToastContainer />
-            </Admin>
+            </SideBarNavigation>
         </BookContext.Provider>
     )
 }
