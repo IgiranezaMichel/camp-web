@@ -92,6 +92,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 type Navigation={
     items:NavigationItem[],
+    activeBar:string,
     children:React.ReactNode
 }
 export const SideBarNavigation:React.FC<Navigation>=(props) =>{
@@ -146,6 +147,7 @@ export const SideBarNavigation:React.FC<Navigation>=(props) =>{
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                className={text.url==props.activeBar?'bg-primary text-white':''}
               >
                 <Link to={text.url}>
                 <ListItemIcon
@@ -157,7 +159,7 @@ export const SideBarNavigation:React.FC<Navigation>=(props) =>{
                 >
                     {/* icon */}
                     <Tooltip title={text.title} placement='left' TransitionComponent={Zoom}>
-                    <span>{text.icon}</span>
+                    <span className={text.url==props.activeBar?'text-white':''}>{text.icon}</span>
                     </Tooltip>
                 </ListItemIcon>
                 </Link>
