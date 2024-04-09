@@ -5,8 +5,9 @@ import TabPanel from '@mui/lab/TabPanel';
 import { Box, Button } from "@mui/material";
 import Tab from '@mui/material/Tab';
 import { useState } from "react";
-import { Admin } from "../../../component/admin";
 import { DisplayLevels } from "./crud";
+import { SideBarNavigation } from "../../../component/navigation";
+import { Url } from "../../../url/url";
 export const LevelUi = () => {
     const [value, setValue] = useState('1');
 
@@ -15,7 +16,7 @@ export const LevelUi = () => {
         setValue(newValue);
     };
     return (
-        <Admin>
+        <SideBarNavigation activeBar="/admin/level" items={Url}>
             <div className="card rounded-0">
                 <img src="../download.jpg" alt="" style={{ filter: 'blur(4px)' }} />
                 <div className="card-img-overlay  d-flex justify-content-center align-items-center">
@@ -39,6 +40,6 @@ export const LevelUi = () => {
                     <TabPanel value="2">Item Two</TabPanel>
                 </TabContext>
             </Box>
-        </Admin>
+        </SideBarNavigation>
     )
 }
