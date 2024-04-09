@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CircularProgress, IconButton, ImageList, ImageListItem, ImageListItemBar, ListSubheader } from "@mui/material";
-import { Close } from "@material-ui/icons";
 import { useLevel } from "../../../../controller/level/query";
 import { LevelContext } from "../../../../contexts/levelContext";
 import { CreateLevel } from "./create";
 import { ContentData } from "../../../../types/contentTypes";
-import { Update} from "@mui/icons-material";
+import { Close, Update} from "@mui/icons-material";
 import { useState } from "react";
 import { DeleteLevel } from "./delete";
 import { ToastContainer } from "react-toastify";
