@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Button, CircularProgress } from "@mui/material";
 
 export const DeleteCamp=(props:{children:ReactNode,arrIndex:number})=>{
-    const {content,updateContent}=useCampContext();
+    const {content}=useCampContext();
     const [camp,setCamp]=useState<any>({});
     const [campId,setCampId]=useState('');
 
@@ -32,7 +32,6 @@ export const DeleteCamp=(props:{children:ReactNode,arrIndex:number})=>{
             const code = Number(splitting[0].split(' ')[0])
             const responseText = splitting[1];
             code == 200 ? toast.success(responseText) : toast.error(responseText);
-            // updateContent();
             }
         )
     }
