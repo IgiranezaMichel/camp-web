@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import JoditEditor from "jodit-react"
 import React, { ReactNode, useState } from "react"
-import { Avatar, Box, Button, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, TextareaAutosize } from "@mui/material";
+import { Avatar, Box, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, TextareaAutosize } from "@mui/material";
 import { useLevel } from "../../../../controller/level/query";
 import { Save } from "@mui/icons-material";
 import { CampInput } from "../../../../types/campInput";
+import { ToastContainer, toast } from "react-toastify";
+import { useSaveOrUpdateCamp } from "../../../../controller/camp/mutation";
+import { useCampContext } from "../../../../contexts/campContext";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -28,13 +31,14 @@ export const CreateCamp = (props: { children: ReactNode }) => {
         title:''
     })
     const [levelList, setLevelList] = React.useState<any>([]);
-    const { response } = useLevel();
+    const { response} = useLevel();
+    const {saveCamp}=useSaveOrUpdateCamp(camp);
+    const {updateContent}=useCampContext();
     React.useEffect(
         () => {
             const fetch = async () => {
                 if (response != undefined && response.responseReady && response.responseContent) {
                     setLevelList(response.responseContent);
-                    console.log(levelList)
                 }
             }
             fetch();
@@ -48,7 +52,16 @@ export const CreateCamp = (props: { children: ReactNode }) => {
             {...camp,levels:typeof value === 'string' ? value.split(',').map(String) : value,}
         );
     };
-    console.log(camp)
+    const saveCampHandler=()=>{
+        saveCamp().then(data=>{
+            const result = data.data.saveOrUpdateCamp;
+            const splitting = String(result).substring(1, String(result).lastIndexOf(',')).split(',');
+            const code = Number(splitting[0].split(' ')[0])
+            const responseText = splitting[1];
+            code == 200 ? toast.success(responseText) : toast.error(responseText);
+            updateContent();
+        })
+    }
     return (
         <>
             {props.children}
@@ -105,8 +118,9 @@ export const CreateCamp = (props: { children: ReactNode }) => {
                     value={camp.content} onChange={(e)=>setCamp({...camp,content:e})}/>
             </div>
             <div className="modal-footer">
-                <Button className=""><Save /></Button>
+                <button onClick={()=>saveCampHandler()} className="" ><Save/></button>
             </div>
+            <ToastContainer/>
         </>
     )
 }
