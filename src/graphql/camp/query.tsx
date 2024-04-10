@@ -10,6 +10,8 @@ campPage(input:$page){
     id
     title 
     cost
+    startingDate
+    endingDate
     address
     location
     description
