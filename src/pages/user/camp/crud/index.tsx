@@ -4,10 +4,12 @@ import { useCampContext } from "../../../../contexts/campContext"
 import { Close, Delete, LocationOn, Map } from "@mui/icons-material";
 import { useState } from "react";
 import { DeleteCamp } from "./delete";
+import { AddMentor } from "../addMentor";
 
 export const DisplayCamp = () => {
     const { content,updateContent } = useCampContext();
     const [openDeleteDialog,setOpenDeleteDialog]=useState(false);
+    const [openAddMentorDialog,setOpenAddMentorDialog]=useState(false);
     const [arrIndex,setArrIndex]=useState(0);
     return (
         <>
@@ -27,7 +29,7 @@ export const DisplayCamp = () => {
                             <div className="">
                             <span className="flo"> 
                                     <Chip onClick={()=>{setArrIndex(index);setOpenDeleteDialog(true)}} label={'Delete camp'} className="bg-danger mx-2 text-white fw-bold" avatar={<Avatar className="p-2 bg-white"><Delete className="text-dark"/></Avatar>}/>
-                                    <Chip className="bg-success text-white" label={'Add mentor'} avatar={<Avatar className="text-white bg-black">+</Avatar>}/>
+                                    <Chip onClick={()=>{setArrIndex(index);setOpenAddMentorDialog(true)}}  className="bg-success text-white" label={'Add mentor'} avatar={<Avatar className="text-white bg-black">+</Avatar>}/>
                                 </span>
                                 <span className="float-md-end"> <i className="d-block text-center">Mentors</i>
                                     <Chip  label='Mike Jones' avatar={<Avatar/>}/>
@@ -42,11 +44,19 @@ export const DisplayCamp = () => {
                 content.responseContent.content.length == 0 &&<div className="text-center p-4 bg-body-tertiary">
                     -- No camp data found --
                     </div>}
+                    {/* delete camp dialog */}
             {openDeleteDialog&&<Dialog open={openDeleteDialog} PaperProps={{className:'col-md-5'}}>
             <DeleteCamp arrIndex={arrIndex} >
                 <div className="p-3">Delete Camp <Close className="float-end" onClick={()=>{setOpenDeleteDialog(false);updateContent()}}/></div>
             </DeleteCamp>
             </Dialog>}
+            {/* add mentor */}
+            {openAddMentorDialog&&<Dialog open={openAddMentorDialog} PaperProps={{className:'col-md-5'}}>
+            <AddMentor arrIndex={arrIndex} >
+                <div className="p-3">Add Mentor <Close className="float-end" onClick={()=>{setOpenAddMentorDialog(false);updateContent()}}/></div>
+            </AddMentor>
+            </Dialog>}
+
         </>
     )
 }
