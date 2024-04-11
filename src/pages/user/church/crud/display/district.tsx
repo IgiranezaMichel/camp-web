@@ -8,6 +8,8 @@ import { useState } from "react";
 export const DisplayDistrict=()=>{
     const { content } = useChurchContext();
     const [open,setOpen]=useState(false);
+    const [churchId,setChurchId]=useState('');
+    const [churchName,setChurchName]=useState('');
     return(
         <>
         {!content.responseReady && <div className="text-center p-5"><CircularProgress /></div>}
@@ -20,7 +22,7 @@ export const DisplayDistrict=()=>{
                     
                         <div className="mb-2"><Church/> {info.name}</div>
                         <div className="float-end"><Chip label={<span className="fw-bold">Total Churches <span className="badge bg-black">{info.churchList.length}</span></span>} /><b></b></div>
-                        <Chip onClick={()=>setOpen(true)} avatar={<Avatar className="bg-black"><Add className="text-white"/></Avatar>} className="bg-primary text-white fw-bold" label='Add Leader' />
+                        <Chip onClick={()=>{setOpen(true),setChurchId(info.id),setChurchName(info.name)}} avatar={<Avatar className="bg-black"><Add className="text-white"/></Avatar>} className="bg-primary text-white fw-bold" label='Add Leader' />
                         <Chip avatar={<Avatar />} className="bg-dark mx-1 text-white fw-bold" label='View Leader' />
                         <div className="modal-footer">
                         </div>
@@ -32,9 +34,9 @@ export const DisplayDistrict=()=>{
                 </Card>
             })
         }
-        <AddChurchLeader open={open}>
+        {churchId.length!=0&&open&&churchName.length!=0&&<AddChurchLeader open={open} church={churchId} churchName={churchName}>
                 <div className="p-3 mb-2 fw-bold">Add Church leader <Close className="float-end" onClick={()=>setOpen(false)}/></div>
-            </AddChurchLeader>
+            </AddChurchLeader>}
     </>
     )
 }
