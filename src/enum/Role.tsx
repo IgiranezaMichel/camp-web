@@ -1,7 +1,7 @@
 export enum Role {
-    UNION,
-    FIELD,
-    DISTRICT,
-    CHURCH,
-    CHRISTIAN
+    UNION="UNION",
+    FIELD="FIELD",
+    DISTRICT="DISTRICT",
+    CHURCH="CHURCH",
+    CHRISTIAN="CHRISTIAN"
   }
