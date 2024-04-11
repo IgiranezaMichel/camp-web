@@ -5,3 +5,8 @@ mutation($accountHolderInput:AccountHolderInput){
     saveOrUpdateAccountHolder(accountHolderInput:$accountHolderInput)
 }
 `
+export const DELETE_ACCOUNT_HOLDER=gql`
+mutation($id:ID){
+    deleteAccountHolder(id:$id)
+}
+`
