@@ -4,7 +4,7 @@ import { BookUi } from './pages/user/books'
 import { Camp } from './pages/user/camp'
 import { Exam } from './pages/user/exam'
 import { Dashboard } from './pages/user/index'
-import { User } from './pages/user/user'
+import { User } from './pages/user/accountHolder'
 import { Logout } from './pages/logout'
 import { Church } from './pages/user/church'
 function App() {
