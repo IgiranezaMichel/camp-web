@@ -71,7 +71,7 @@ export const DisplayAccountHolder=()=>{
                             name:data.accountHolder.name,
                             profile:data.accountHolder.profilePicture,
                             phone:data.accountHolder.phoneNumber,
-                            churchId:data.accountHolder.church.id
+                            churchId:data.church.id
                         });setOpen(true)}} avatar={<Lock className="text-white"/>} color="success" label='Change responsibility'/>
                     </div>
                 </div>
