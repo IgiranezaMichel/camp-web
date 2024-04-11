@@ -49,10 +49,10 @@ export default function ChangeUserRole(props:{children:ReactNode,open:boolean,da
         <div className="mb-2">{props.data.phone}</div>
       <NativeSelect className="mb-2" variant="standard" fullWidth onChange={(e)=>setRole(e.target.value as Role)}>
         <option value="">Select position of duty</option>
-        <option value={Role.CHURCH}>Church leader</option>
+        <option value={Role.CHRISTIAN}>Church leader</option>
+        <option value={Role.CHURCH}>Pastor</option>
         <option value={Role.FIELD}>Field Leader</option>
         <option value={Role.UNION}>Union Leader</option>
-        <option value={Role.CHRISTIAN}>Current church Christian</option>
       </NativeSelect>
       {
         role!=undefined&&<>{dutyForm}</>
