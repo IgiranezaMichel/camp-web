@@ -8,6 +8,8 @@ import { useState } from "react";
 export const DisplayChurch = () => {
     const { content } = useChurchContext();
     const [open,setOpen]=useState(false);
+    const [churchId,setChurchId]=useState('');
+    const [churchName,setChurchName]=useState('');
     return (
         <>
             {!content.responseReady && <div className="text-center p-5"><CircularProgress /></div>}
@@ -24,9 +26,9 @@ export const DisplayChurch = () => {
                     </Card>
                 })
             }
-            <AddChurchLeader open={open}>
+           {open&&churchId.length!=0&&churchName.length!=0&& <AddChurchLeader open={open} church={churchId} churchName={churchName}>
                 <div className="p-3 mb-2 fw-bold">Add Church leader <Close className="float-end" onClick={()=>setOpen(false)}/></div>
-            </AddChurchLeader>
+            </AddChurchLeader>}
         </>
     )
 }
