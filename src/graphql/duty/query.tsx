@@ -1,12 +1,12 @@
 import { gql } from "@apollo/client";
 
 export const FIND_USER_WORK_AT_THE_SAME_CHURCH = gql`
-query($church:ID){
+query($church:ID!){
 findUserWorkingAtTheSameChurch(church:$church){
   id
   name
   description
-  accountHolder{
+  accountHolder{    
     name
     gender
     phoneNumber
@@ -14,4 +14,39 @@ findUserWorkingAtTheSameChurch(church:$church){
     timeStamp
   }
 }}
+`
+export const FINDING_ACCOUNT_HOLDER_HAVING_SAME_ROLE=gql`
+query($input:PageInput,$role:Role!){
+    findAccountHolderHavingSameRole(input:$input,role:$role)
+    {
+    pageNumber
+    pageSize
+    total
+    content{
+      name
+      description
+      church{
+        id
+        name
+        church{
+            id
+          name
+          church{
+            id
+            name
+            location
+          }
+        }
+      }
+      accountHolder{
+        id
+        name
+        gender
+        email
+        profilePicture
+        dob
+        timeStamp
+      }
+    }
+  }}
 `
