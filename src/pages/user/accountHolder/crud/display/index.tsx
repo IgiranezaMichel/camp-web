@@ -38,8 +38,9 @@ export const DisplayAccountHolder=()=>{
                 </div>
                 <div className="col-md-4  ">
                     <div className="float-md-end p-3">
-                        <span className="d-flex">{response.responseContent.pageNumber+1} page out {response.responseContent.pageSize}
-                        <Pagination variant="outlined" shape="rounded" count={page.pageSize} page={page.pageSize} onChange={handleChange}/></span>
+                        <span className="d-flex">{response.responseContent.pageSize!=0?response.responseContent.pageNumber+1:0} page out {response.responseContent.pageSize}
+                        <Pagination variant="outlined" shape="rounded" count={1} page={page.pageSize} onChange={handleChange}/>
+                        </span> 
                     </div>
                 </div>
             </div>
