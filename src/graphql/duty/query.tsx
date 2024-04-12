@@ -28,9 +28,11 @@ query($input:PageInput,$role:Role!){
       church{
         id
         name
+        location
         church{
             id
           name
+          location
           church{
             id
             name
