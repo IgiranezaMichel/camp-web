@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import JoditEditor from "jodit-react"
 import React, { ReactNode, useState } from "react"
-import { Avatar, Box, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, TextareaAutosize } from "@mui/material";
+import { Avatar, Box, Chip, CircularProgress, FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, TextareaAutosize } from "@mui/material";
 import { useLevel } from "../../../../controller/level/query";
 import { Save } from "@mui/icons-material";
 import { CampInput } from "../../../../types/campInput";
@@ -64,6 +64,10 @@ export const CreateCamp = (props: { children: ReactNode }) => {
     }
     return (
         <>
+        {!response.responseReady&&<div className="text-center p-2">
+            <CircularProgress/>
+            </div>}
+            {response != undefined && response.responseReady && response.responseContent&&levelList!=undefined&&levelList.length!=0&&<>
             {props.children}
             <div className="row col-12 m-auto pb-5">
                 <div className="col-sm-6">
@@ -120,6 +124,13 @@ export const CreateCamp = (props: { children: ReactNode }) => {
             <div className="modal-footer">
                 <button onClick={()=>saveCampHandler()} className="" ><Save/></button>
             </div>
+            </>}
+            {response != undefined && response.responseReady && response.responseContent&&levelList!=undefined&&levelList.length==0&&<div>
+                <div>{props.children}</div>
+                <div className="p-3">
+                Please Add Ay Level before creating any camp meeting
+                </div>
+                </div>}
             <ToastContainer/>
         </>
     )
