@@ -10,7 +10,7 @@ export default function ChangeUserRole(props:{children:ReactNode,open:boolean,da
     const [duty,setDuty]=useState<DutyInput>({
         description:'',
         name:'',
-        churchId:'',
+        churchId:props.data.churchId,
         accountHolderId:props.data.id
         ,id:''
     });
