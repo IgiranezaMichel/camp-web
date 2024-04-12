@@ -9,7 +9,7 @@ import ChangeUserRole from "../create/changeUserRole";
 
 export const DisplayAccountHolder=()=>{
     const [page,setPage]=useState<PageInput>({pageNumber:0,pageSize:10,sort:"id"});
-    const {response}=useFindingAccountHolderHavingSameRole(page,Role.CHRISTIAN);
+    const {response,refetch}=useFindingAccountHolderHavingSameRole(page,Role.CHRISTIAN);
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         event;
         setPage({...page,pageNumber:value});
@@ -60,7 +60,7 @@ export const DisplayAccountHolder=()=>{
                 </div>
                 <div className="card col-md-4 justify-content-center p-3 rounded-0">
                 <div>
-                    <div><Chip className="" color="primary" label={data.name} avatar={<Avatar><LockPerson/></Avatar>}/></div>
+                    <div><Chip className="mb-3" color="primary" label={data.name} avatar={<Avatar><LockPerson/></Avatar>}/></div>
                     <div><Church/>{data.church.church.name}/{data.church.name}</div>
                     <div><Key/>{data.description}</div>
                     <div className="modal-footer">
@@ -84,7 +84,7 @@ export const DisplayAccountHolder=()=>{
             <div className="p-5 text-center">-- No data found --</div>}
         </>}
         {open&&<ChangeUserRole data={data} open={open}>
-            <div>Add leader <Close className="float-end" onClick={()=>setOpen(false)}/></div>
+            <div>Add leader <Close className="float-end" onClick={()=>{setOpen(false);refetch()}}/></div>
         </ChangeUserRole>}
         </>
     )
