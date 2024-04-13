@@ -158,7 +158,7 @@ export const SideBarNavigation:React.FC<Navigation>=(props) =>{
                   }}
                 >
                     {/* icon */}
-                    <Tooltip title={text.title} placement='left' TransitionComponent={Zoom}>
+                    <Tooltip title={text.title} placement='left' TransitionComponent={Zoom} arrow>
                     <span className={text.url==props.activeBar?'text-white':''}>{text.icon}</span>
                     </Tooltip>
                 </ListItemIcon>
