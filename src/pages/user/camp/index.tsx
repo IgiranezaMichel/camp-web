@@ -7,7 +7,7 @@ import { useState } from "react"
 import { Close } from "@mui/icons-material"
 import { PageInput } from "../../../types/pageInput"
 import { ContentData } from "../../../types/contentTypes"
-import { useCamp } from "../../../controller/camp/query"
+import { useActiveCamp, useCamp } from "../../../controller/camp/query"
 import { CampContext } from "../../../contexts/campContext"
 import { DisplayCamp } from "./crud"
 
@@ -19,6 +19,8 @@ export const Camp = () => {
         event;
         setValue(newValue);
     };
+    const camp=useActiveCamp(page);
+    console.log(camp)
     const { response, refetch } = useCamp(page);
     const data: ContentData = {
         content: response,
