@@ -1,16 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Avatar, Card, Chip, Dialog } from "@mui/material";
+import { Avatar, Card, Chip, Dialog, Tooltip } from "@mui/material";
 import { useCampContext } from "../../../../contexts/campContext"
 import { Close, Delete, LocationOn, Map } from "@mui/icons-material";
 import { useState } from "react";
 import { DeleteCamp } from "./delete";
 import { AddMentor } from "../addMentor";
+import { MentorDetail } from "../mentorDetail";
 
 export const DisplayCamp = () => {
     const { content,updateContent } = useCampContext();
     const [openDeleteDialog,setOpenDeleteDialog]=useState(false);
+    console.log(content)
     const [openAddMentorDialog,setOpenAddMentorDialog]=useState(false);
     const [arrIndex,setArrIndex]=useState(0);
+    const [accountHolderDetail,setAccountHolderDetail]=useState({photo:'',name:'',email:'',open:false});
     return (
         <>
             {content != undefined && content.responseReady && content.responseContent && content.responseContent.content &&
@@ -32,8 +35,22 @@ export const DisplayCamp = () => {
                                     <Chip onClick={()=>{setArrIndex(index);setOpenAddMentorDialog(true)}}  className="bg-success text-white" label={'Add mentor'} avatar={<Avatar className="text-white bg-black">+</Avatar>}/>
                                 </span>
                                 <span className="float-md-end"> <i className="d-block text-center">Mentors</i>
-                                    <Chip  label='Mike Jones' avatar={<Avatar/>}/>
-                                    <Chip label='Mike Jones' avatar={<Avatar/>}/>
+                                {data.campMentorList!=undefined&&data.campMentorList.length!=0&&data.campMentorList.map((data1:any)=>{
+                                    return <Tooltip key={data1.id} title={
+                                        <>
+                                        <div className="mb-2"><b>Name </b>{data1.accountHolder.name}</div>
+                                        <div className="mb-2"><b>Role </b>{data1.role}</div>
+                                        <div className="mb-2"><b>Description </b>{data1.description}</div>
+                                        </>
+                                    } arrow>
+                                        <Chip onClick={()=>{
+                                            setAccountHolderDetail({email:data1.accountHolder.email,name:data1.accountHolder.name,open:true,photo:data1.accountHolder.profilePicture})
+                                        }} label={data1.accountHolder.name} avatar={<Avatar src={data1.accountHolder.profilePicture}/>}/>
+                                    </Tooltip>
+                                })}
+                                    {data.campMentorList!=undefined&&data.campMentorList.length==0&&<div className="p-1">
+                                       -- no mentor found -- 
+                                        </div>}
                                 </span>
                             </div>
                         </Card>
@@ -44,6 +61,12 @@ export const DisplayCamp = () => {
                 content.responseContent.content.length == 0 &&<div className="text-center p-4 bg-body-tertiary">
                     -- No camp data found --
                     </div>}
+                    {/* mentor Details */}
+                    <MentorDetail data={accountHolderDetail}>
+                        <div className="position-absolute w-100">
+                        <Close className="float-end  text-white fw-bold bg-danger"  onClick={()=>setAccountHolderDetail({...accountHolderDetail,open:false})} style={{zIndex:1}}/>
+                        </div>
+                    </MentorDetail>
                     {/* delete camp dialog */}
             {openDeleteDialog&&<Dialog open={openDeleteDialog} PaperProps={{className:'col-md-5'}}>
             <DeleteCamp arrIndex={arrIndex} >
@@ -53,7 +76,7 @@ export const DisplayCamp = () => {
             {/* add mentor */}
             {openAddMentorDialog&&<Dialog open={openAddMentorDialog} PaperProps={{className:'col-md-5'}}>
             <AddMentor arrIndex={arrIndex} >
-                <div className="p-3">Add Mentor <Close className="float-end" onClick={()=>{setOpenAddMentorDialog(false);updateContent()}}/></div>
+                <div className="p-3 sticky-top">Add Mentor <Close className="float-end" onClick={()=>{setOpenAddMentorDialog(false);updateContent()}}/></div>
             </AddMentor>
             </Dialog>}
 
