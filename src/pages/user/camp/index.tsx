@@ -7,21 +7,21 @@ import { useState } from "react"
 import { Close } from "@mui/icons-material"
 import { PageInput } from "../../../types/pageInput"
 import { ContentData } from "../../../types/contentTypes"
-import { useActiveCamp, useCamp } from "../../../controller/camp/query"
+import { useActiveCamp } from "../../../controller/camp/query"
 import { CampContext } from "../../../contexts/campContext"
 import { DisplayCamp } from "./crud"
 
 export const Camp = () => {
     const [value, setValue] = useState('1');
     const [openCreateDialog, setOpenCreateDialog] = useState(false);
-    const [page, setPage] = useState<PageInput>({ pageNumber: 0, pageSize: 10, sort: "timeStamp" });
+    const [page] = useState<PageInput>({ pageNumber: 0, pageSize: 10, sort: "timeStamp" });
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         event;
         setValue(newValue);
     };
     const camp=useActiveCamp(page);
     console.log(camp)
-    const { response, refetch } = useCamp(page);
+    const { response, refetch } = useActiveCamp(page);
     const data: ContentData = {
         content: response,
         updateContent() {
