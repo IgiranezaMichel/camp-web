@@ -27,8 +27,8 @@ export const DisplayFieldAccountHolder=()=>{
                 <div className="col-md-4 d-flex card justify-content-center border-0">
                     <TextField variant="standard" label='Search' fullWidth/>
                 </div>
-                <div className="col-md-4 card d-flex justify-content-center border-0">
-                    <NativeSelect fullWidth onChange={(e)=>setPage({...page,sort:e.target.value})}>
+                <div className="col-md-4 card d-flex justify-content-center border-0 ">
+                    <NativeSelect className="mt-3" fullWidth onChange={(e)=>setPage({...page,sort:e.target.value})}>
                         <option value="id">Select To sort</option>
                         <option value="accountHolder.name">Names</option>
                         <option value="description">Description</option>
