@@ -3,18 +3,21 @@ import { SideBarNavigation } from "../../../component/navigation"
 import { Url } from "../../../url/url"
 import { TabContext, TabList, TabPanel } from "@mui/lab"
 import { useState } from "react"
+import DisplayExam from "./display/displayExam"
+import { CreateExam } from "./crud/create"
+import { Close } from "@mui/icons-material"
 
-export const Exam=()=>{
+export const Exam = () => {
     const [value, setValue] = useState('1');
-
+    const [open, setOpen] = useState(false);
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         event;
         setValue(newValue);
     };
-    return(
+    return (
         <SideBarNavigation activeBar="/admin/exams" items={Url}>
             <div className="mb-5">
-                <Button data-bs-toggle="modal" data-bs-target="#add" variant="contained" className="rounded-0">Add Exam</Button>
+                <Button onClick={() => setOpen(true)} variant="contained" className="rounded-0">Add Exam</Button>
             </div>
             <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
@@ -25,11 +28,14 @@ export const Exam=()=>{
                             <Tab label="Camp Leader History" value="3" />
                         </TabList>
                     </Box>
-                    <TabPanel value="1">Item 1</TabPanel>
+                    <TabPanel value="1"><DisplayExam /></TabPanel>
                     <TabPanel value="2">Item Two</TabPanel>
                     <TabPanel value="3">Item Three</TabPanel>
                 </TabContext>
             </Box>
+            <CreateExam open={open}>
+                <div className="p-4 fw-bold sticky-top">Add new exam<Close onClick={() => setOpen(false)} className="float-end" /></div>
+            </CreateExam>
         </SideBarNavigation>
     )
 }
