@@ -32,8 +32,20 @@ export const ACTIVE_CAMP = gql`
         startingDate
         endingDate
         description
+        location
         content
         timeStamp
+        campMentorList{
+          role
+          description
+      accountHolder{
+        id
+        name
+        gender
+        email
+        profilePicture
+      }
+    }
       }
     }
   }
