@@ -10,3 +10,8 @@ mutation($id:ID){
     deleteAccountHolder(id:$id)
 }
 `
+export const FIND_ACCOUNT_HOLDER_BY_EMAIL=gql`
+mutation($email:ID!){
+    findByEmail(email:$email){id,gender,email,profilePicture,name}
+}
+`
