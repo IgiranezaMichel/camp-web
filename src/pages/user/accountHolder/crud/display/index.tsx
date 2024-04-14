@@ -28,7 +28,7 @@ export const DisplayAccountHolder=()=>{
                 <div className="col-md-4 d-flex card justify-content-center border-0">
                     <TextField variant="standard" label='Search' fullWidth/>
                 </div>
-                <div className="col-md-4 card d-flex justify-content-center border-0">
+                <div className="col-md-4 card d-flex justify-content-center border-0 mt-3">
                     <NativeSelect fullWidth onChange={(e)=>setPage({...page,sort:e.target.value})}>
                         <option value="id">Select To sort</option>
                         <option value="accountHolder.name">Names</option>
@@ -49,8 +49,8 @@ export const DisplayAccountHolder=()=>{
           response.responseContent.content.map((data:any)=>{
             return <Card elevation={9} className="mt-3">
             <section className="row">
-                <div className="card p-0 col-md-3">
-                <img src={data.accountHolder.profilePicture} className="card-img"/>
+                <div className="card p-0 col-md-3 rounded-0">
+                <img src={data.accountHolder.profilePicture} className="card-img rounded-0"/>
                 </div>
                 <div className="card rounded-0 col-md-5 d-flex justify-content-center">
                     <div className="mb-2"><b>Name</b> {data.accountHolder.name}</div>
