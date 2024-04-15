@@ -50,3 +50,35 @@ export const ACTIVE_CAMP = gql`
     }
   }
 `;
+export const INACTIVE_CAMP = gql`
+query ($page: PageInput) {
+  inactiveCamp(input: $page) {
+    pageNumber
+    pageSize
+    total
+    content {
+      id
+      title
+      cost
+      address
+      startingDate
+      endingDate
+      description
+      location
+      content
+      timeStamp
+      campMentorList{
+        role
+        description
+    accountHolder{
+      id
+      name
+      gender
+      email
+      profilePicture
+    }
+  }
+    }
+  }
+}
+`;
