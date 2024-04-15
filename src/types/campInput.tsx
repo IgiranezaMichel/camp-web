@@ -7,6 +7,6 @@ location:string
 startingDate:string 
 endingDate:string 
 description:string 
-levels?:any
+levelArr?:any
 content:string
 }
