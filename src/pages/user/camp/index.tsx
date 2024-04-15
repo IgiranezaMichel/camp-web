@@ -1,15 +1,16 @@
+import { Close } from "@mui/icons-material"
+import { TabContext, TabList, TabPanel } from "@mui/lab"
 import { Box, Button, Dialog, Slide, Tab } from "@mui/material"
+import { useState } from "react"
 import { SideBarNavigation } from "../../../component/navigation"
+import { CampContext } from "../../../contexts/campContext"
+import { useActiveCamp } from "../../../controller/camp/query"
+import { ContentData } from "../../../types/contentTypes"
+import { PageInput } from "../../../types/pageInput"
 import { Url } from "../../../url/url"
 import { CreateCamp } from "./crud/create"
-import { TabContext, TabList, TabPanel } from "@mui/lab"
-import { useState } from "react"
-import { Close } from "@mui/icons-material"
-import { PageInput } from "../../../types/pageInput"
-import { ContentData } from "../../../types/contentTypes"
-import { useActiveCamp } from "../../../controller/camp/query"
-import { CampContext } from "../../../contexts/campContext"
-import { DisplayCamp } from "./crud"
+import { DisplayCamp } from "./crud/display"
+import { CampHistory } from "./crud/display/campHistory"
 
 export const Camp = () => {
     const [value, setValue] = useState('1');
@@ -39,13 +40,12 @@ export const Camp = () => {
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <TabList onChange={handleChange}>
                                 <Tab label="Recent camps" value="1" />
-                                <Tab label="Camp Applicants" value="2" />
+                                <Tab label="Camp History" value="2" />
                                 <Tab label="Camp Leader History" value="3" />
                             </TabList>
                         </Box>
                         <TabPanel value="1"><DisplayCamp/></TabPanel>
-                        <TabPanel value="2">Item Two</TabPanel>
-                        <TabPanel value="3">Item Three</TabPanel>
+                        <TabPanel value="2"><CampHistory/></TabPanel>
                     </TabContext>
                 </Box>
                 <Dialog TransitionComponent={Slide} open={openCreateDialog}>
