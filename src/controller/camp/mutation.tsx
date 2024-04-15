@@ -3,6 +3,7 @@ import { CampInput } from "../../types/campInput";
 import { CREATE_CAMP, DELETE_CAMP } from "../../graphql/camp/mutation";
 
 export const useSaveOrUpdateCamp = (campInput: CampInput) => {
+    console.log('running')
     const [save] = useMutation(CREATE_CAMP);
     const saveCamp = async () => {
         return await save({ variables: { campInput: campInput } })
