@@ -26,7 +26,7 @@ export const CreateCamp = (props: { children: ReactNode }) => {
         description:'',
         endingDate:'',
         location:'',
-        levels:[],
+        levelArr:[],
         startingDate:'',
         title:''
     })
@@ -44,13 +44,14 @@ export const CreateCamp = (props: { children: ReactNode }) => {
             fetch();
         },[levelList, response]
     )
-    const handleChange = (event: SelectChangeEvent<typeof camp.levels>) => {
+    const handleChange = (event: SelectChangeEvent<typeof camp.levelArr>) => {
         const {
             target: { value },
         } = event;
         setCamp(
-            {...camp,levels:typeof value === 'string' ? value.split(',').map(String) : value,}
+            {...camp,levelArr:typeof value === 'string' ? value.split(',').map(String) : value,}
         );
+        console.log(camp.levelArr)
     };
     const saveCampHandler=()=>{
         saveCamp().then(data=>{
@@ -92,7 +93,7 @@ export const CreateCamp = (props: { children: ReactNode }) => {
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
                         multiple
-                        value={camp.levels}
+                        value={camp.levelArr}
                         onChange={handleChange}
                         input={<OutlinedInput id="select-multiple-chip" label="Select Level of attendance" />}
                         renderValue={(selected) => (
