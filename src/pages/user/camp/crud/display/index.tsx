@@ -6,14 +6,15 @@ import { useCampContext } from "../../../../../contexts/campContext";
 import { AddMentor } from "../../addMentor";
 import { MentorDetail } from "../../mentorDetail";
 import { DeleteCamp } from "../delete";
+import { DisplayCampApplicant } from "../../campApplicant";
 
 export const DisplayCamp = () => {
     const { content,updateContent } = useCampContext();
     const [openDeleteDialog,setOpenDeleteDialog]=useState(false);
-    console.log(content)
     const [openAddMentorDialog,setOpenAddMentorDialog]=useState(false);
     const [arrIndex,setArrIndex]=useState(0);
     const [accountHolderDetail,setAccountHolderDetail]=useState({photo:'',name:'',email:'',open:false});
+    const [campDetail,setCampDetail]=useState({open:false,campId:''});
     return (
         <>
             {content != undefined && content.responseReady && content.responseContent && content.responseContent.content &&
@@ -33,7 +34,7 @@ export const DisplayCamp = () => {
                             <span className="flo"> 
                                     <Chip onClick={()=>{setArrIndex(index);setOpenDeleteDialog(true)}} label={'Delete camp'} className="bg-danger mx-2 text-white fw-bold" avatar={<Avatar className="p-2 bg-white"><Delete className="text-dark"/></Avatar>}/>
                                     <Chip onClick={()=>{setArrIndex(index);setOpenAddMentorDialog(true)}}  className="bg-success text-white" label={'Add mentor'} avatar={<Avatar className="text-white bg-black">+</Avatar>}/>
-                                    <Chip onClick={()=>{setArrIndex(index);setOpenAddMentorDialog(true)}}  className="bg-primary text-white mx-2" label={'View Applicant'} avatar={<Avatar className="text-white bg-black">+</Avatar>}/>
+                                    <Chip onClick={()=>{setCampDetail({campId:data.id,open:true})}}  className="bg-primary text-white mx-2" label={'View Applicant'} avatar={<Avatar className="text-white bg-black">+</Avatar>}/>
                                 </span>
                                 <span className="float-md-end"> <i className="d-block text-center">Mentors</i>
                                 {data.campMentorList!=undefined&&data.campMentorList.length!=0&&data.campMentorList.map((data1:any)=>{
@@ -80,7 +81,13 @@ export const DisplayCamp = () => {
                 <div className="p-3 sticky-top">Add Mentor <Close className="float-end" onClick={()=>{setOpenAddMentorDialog(false);updateContent()}}/></div>
             </AddMentor>
             </Dialog>}
-
+                {/* view camp applicant list*/}
+                {campDetail.open&&campDetail.campId.length!=0&&
+                <Dialog open={campDetail.open} maxWidth='lg' PaperProps={{className:'col-12  bg-white',elevation:9,}}>
+                <DisplayCampApplicant data={campDetail}>
+                    <div className="p-3">List of Camp Applicant <Close className="float-end" onClick={()=>setCampDetail({...campDetail,open:false})}/></div>
+                </DisplayCampApplicant>
+                </Dialog>}
         </>
     )
 }
