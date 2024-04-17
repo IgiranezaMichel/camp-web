@@ -11,7 +11,6 @@ import { Url } from "../../../url/url"
 import { CreateCamp } from "./crud/create"
 import { DisplayCamp } from "./crud/display"
 import { CampHistory } from "./crud/display/campHistory"
-
 export const Camp = () => {
     const [value, setValue] = useState('1');
     const [openCreateDialog, setOpenCreateDialog] = useState(false);
