@@ -32,7 +32,7 @@ export const ACTIVE_CAMP = gql`
         startingDate
         endingDate
         description
-        location
+        deadline
         content
         timeStamp
         campMentorList{
